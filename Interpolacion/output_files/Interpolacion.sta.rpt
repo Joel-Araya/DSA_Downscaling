@@ -1,5 +1,5 @@
 Timing Analyzer report for Interpolacion
-Wed Nov 12 21:34:54 2025
+Wed Nov 12 21:46:14 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -725,7 +725,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Nov 12 21:34:51 2025
+    Info: Processing started: Wed Nov 12 21:46:11 2025
 Info: Command: quartus_sta Interpolacion -c Interpolacion
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -835,8 +835,8 @@ Info (332114): Report Metastability: Found 1 synchronizer chains.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 6 warnings
-    Info: Peak virtual memory: 940 megabytes
-    Info: Processing ended: Wed Nov 12 21:34:54 2025
+    Info: Peak virtual memory: 939 megabytes
+    Info: Processing ended: Wed Nov 12 21:46:14 2025
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:04
 
