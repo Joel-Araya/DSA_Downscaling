@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Interpolacion
-Wed Nov 12 21:45:41 2025
+Thu Nov 13 10:37:09 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -14,11 +14,10 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis DSP Block Usage Summary
-  9. Registers Removed During Synthesis
- 10. General Register Statistics
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+  9. General Register Statistics
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -45,17 +44,17 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Nov 12 21:45:41 2025       ;
+; Analysis & Synthesis Status     ; Successful - Thu Nov 13 10:37:09 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; Interpolacion                               ;
 ; Top-level Entity Name           ; bilinear_interp                             ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 51                                          ;
+; Total registers                 ; 67                                          ;
 ; Total pins                      ; 76                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 4                                           ;
+; Total DSP Blocks                ; 6                                           ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
@@ -186,25 +185,25 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimate of Logic utilization (ALMs needed) ; 36        ;
+; Estimate of Logic utilization (ALMs needed) ; 44        ;
 ;                                             ;           ;
-; Combinational ALUT usage for logic          ; 62        ;
+; Combinational ALUT usage for logic          ; 79        ;
 ;     -- 7 input functions                    ; 0         ;
 ;     -- 6 input functions                    ; 0         ;
 ;     -- 5 input functions                    ; 0         ;
 ;     -- 4 input functions                    ; 0         ;
-;     -- <=3 input functions                  ; 62        ;
+;     -- <=3 input functions                  ; 79        ;
 ;                                             ;           ;
-; Dedicated logic registers                   ; 51        ;
+; Dedicated logic registers                   ; 67        ;
 ;                                             ;           ;
 ; I/O pins                                    ; 76        ;
 ;                                             ;           ;
-; Total DSP Blocks                            ; 4         ;
+; Total DSP Blocks                            ; 6         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; clk~input ;
-; Maximum fan-out                             ; 51        ;
-; Total fan-out                               ; 488       ;
-; Average fan-out                             ; 1.81      ;
+; Maximum fan-out                             ; 67        ;
+; Total fan-out                               ; 648       ;
+; Average fan-out                             ; 2.13      ;
 +---------------------------------------------+-----------+
 
 
@@ -213,8 +212,8 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+-----------------+--------------+
 ; Compilation Hierarchy Node    ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                       ; Entity Name     ; Library Name ;
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+-----------------+--------------+
-; |bilinear_interp              ; 62 (0)              ; 51 (0)                    ; 0                 ; 4          ; 76   ; 0            ; |bilinear_interp                          ; bilinear_interp ; work         ;
-;    |stage1_interp_x:u_stage1| ; 31 (31)             ; 33 (33)                   ; 0                 ; 2          ; 0    ; 0            ; |bilinear_interp|stage1_interp_x:u_stage1 ; stage1_interp_x ; work         ;
+; |bilinear_interp              ; 79 (0)              ; 67 (0)                    ; 0                 ; 6          ; 76   ; 0            ; |bilinear_interp                          ; bilinear_interp ; work         ;
+;    |stage1_interp_x:u_stage1| ; 48 (48)             ; 49 (49)                   ; 0                 ; 4          ; 0    ; 0            ; |bilinear_interp|stage1_interp_x:u_stage1 ; stage1_interp_x ; work         ;
 ;    |stage2_interp_y:u_stage2| ; 31 (31)             ; 9 (9)                     ; 0                 ; 2          ; 0    ; 0            ; |bilinear_interp|stage2_interp_y:u_stage2 ; stage2_interp_y ; work         ;
 ;    |stage3_convert:u_stage3|  ; 0 (0)               ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |bilinear_interp|stage3_convert:u_stage3  ; stage3_convert  ; work         ;
 +-------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------+-----------------+--------------+
@@ -226,21 +225,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------+-------------+
 ; Statistic                       ; Number Used ;
 +---------------------------------+-------------+
-; Two Independent 18x18           ; 4           ;
-; Total number of DSP blocks      ; 4           ;
+; Two Independent 18x18           ; 6           ;
+; Total number of DSP blocks      ; 6           ;
 ;                                 ;             ;
-; Fixed Point Unsigned Multiplier ; 4           ;
+; Fixed Point Unsigned Multiplier ; 6           ;
 +---------------------------------+-------------+
-
-
-+-------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                  ;
-+--------------------------------------------+----------------------------------------+
-; Register name                              ; Reason for Removal                     ;
-+--------------------------------------------+----------------------------------------+
-; stage1_interp_x:u_stage1|o_lerp_2_q[0..15] ; Stuck at GND due to stuck port data_in ;
-; Total Number of Removed Registers = 16     ;                                        ;
-+--------------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -248,10 +237,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 51    ;
+; Total registers                              ; 67    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 51    ;
+; Number of registers using Asynchronous Clear ; 67    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
@@ -263,17 +252,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 51                          ;
-;     CLR               ; 51                          ;
-; arriav_lcell_comb     ; 62                          ;
-;     arith             ; 62                          ;
-;         1 data inputs ; 28                          ;
-;         2 data inputs ; 34                          ;
-; arriav_mac            ; 4                           ;
+; arriav_ff             ; 67                          ;
+;     CLR               ; 67                          ;
+; arriav_lcell_comb     ; 79                          ;
+;     arith             ; 79                          ;
+;         1 data inputs ; 30                          ;
+;         2 data inputs ; 49                          ;
+; arriav_mac            ; 6                           ;
 ; boundary_port         ; 76                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 2.50                        ;
-; Average LUT depth     ; 1.46                        ;
+; Average LUT depth     ; 1.42                        ;
 +-----------------------+-----------------------------+
 
 
@@ -292,7 +281,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Nov 12 21:45:35 2025
+    Info: Processing started: Thu Nov 13 10:37:00 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Interpolacion -c Interpolacion
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -308,43 +297,23 @@ Info (12021): Found 1 design units, including 1 entities, in source file bilinea
     Info (12023): Found entity 1: bilinear_interp File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 6
 Info (12127): Elaborating entity "bilinear_interp" for the top level hierarchy
 Info (12128): Elaborating entity "stage1_interp_x" for hierarchy "stage1_interp_x:u_stage1" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 49
-Warning (10036): Verilog HDL or VHDL warning at stage1_interp_x.sv(26): object "p3_q" assigned a value but never read File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 26
-Warning (10036): Verilog HDL or VHDL warning at stage1_interp_x.sv(26): object "p4_q" assigned a value but never read File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 26
-Warning (10858): Verilog HDL warning at stage1_interp_x.sv(29): object lerp_2_comb used but never assigned File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 29
 Warning (10230): Verilog HDL assignment warning at stage1_interp_x.sv(42): truncated value with size 32 to match size of target (16) File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 42
-Warning (10030): Net "lerp_2_comb" at stage1_interp_x.sv(29) has no driver or initial value, using a default initial value '0' File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 29
+Warning (10230): Verilog HDL assignment warning at stage1_interp_x.sv(47): truncated value with size 32 to match size of target (16) File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 47
 Info (12128): Elaborating entity "stage2_interp_y" for hierarchy "stage2_interp_y:u_stage2" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 61
 Warning (10230): Verilog HDL assignment warning at stage2_interp_y.sv(34): truncated value with size 32 to match size of target (16) File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv Line: 34
 Info (12128): Elaborating entity "stage3_convert" for hierarchy "stage3_convert:u_stage3" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 71
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 16 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "i_p3[0]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[1]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[2]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[3]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[4]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[5]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[6]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p3[7]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[0]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[1]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[2]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[3]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[4]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[5]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[6]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-    Warning (15610): No output dependent on input pin "i_p4[7]" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 14
-Info (21057): Implemented 169 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 188 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 67 input pins
     Info (21059): Implemented 9 output pins
-    Info (21061): Implemented 89 logic cells
-    Info (21062): Implemented 4 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 24 warnings
-    Info: Peak virtual memory: 548 megabytes
-    Info: Processing ended: Wed Nov 12 21:45:41 2025
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:13
+    Info (21061): Implemented 106 logic cells
+    Info (21062): Implemented 6 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 542 megabytes
+    Info: Processing ended: Thu Nov 13 10:37:09 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:19
 
 

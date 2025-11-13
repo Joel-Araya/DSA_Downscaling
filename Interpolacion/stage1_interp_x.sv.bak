@@ -41,11 +41,6 @@
    assign mul2_x = p2_q * i_wx;
    assign lerp_1_comb = (mul1_x >> 8) + (mul2_x >> 8);
 	
-	// lerp_2 = P3*(1-w_x) + P4*w_x
-   assign mul3_x = p3_q * wx_inv;
-   assign mul4_x = p4_q * i_wx;
-   assign lerp_2_comb = (mul3_x >> 8) + (mul4_x >> 8);
-	
 	// Registros de salida de la Etapa 1
 	always_ff @(posedge clk or negedge rst_n) begin
 		if (!rst_n) begin

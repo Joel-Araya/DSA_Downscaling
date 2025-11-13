@@ -180,6 +180,70 @@
 					"strict" : false
 				},
 				{
+					"name" : "i_p4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p4[7]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "i_p3[7]",
+					"strict" : false
+				},
+				{
 					"name" : "i_p2[0]",
 					"strict" : false
 				},

@@ -28,10 +28,13 @@ module tb_bilinear_interp;
 		$display("Iniciando Testbench...");
 		
 		// 1. Reset
-		rst_n = 1'b0;
+		rst_n = 1'b1;
 		i_start = 1'b0;
 		i_p1 = '0; i_p2 = '0; i_p3 = '0; i_p4 = '0;
 		i_wx = '0; i_wy = '0;
+		repeat (2) @(posedge clk);
+		rst_n = 1'b0;
+		
 		repeat (5) @(posedge clk);
 		rst_n = 1'b1;
 		@(posedge clk);
