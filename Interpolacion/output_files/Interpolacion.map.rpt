@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Interpolacion
-Wed Nov 19 20:43:49 2025
+Wed Nov 19 22:28:13 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -48,7 +48,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Nov 19 20:43:49 2025       ;
+; Analysis & Synthesis Status     ; Successful - Wed Nov 19 22:28:13 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; Interpolacion                               ;
 ; Top-level Entity Name           ; bilinear_interp_simd                        ;
@@ -184,11 +184,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                                                  ; Library ;
 +----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; bilinear_interp.sv               ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv      ;         ;
+; bilinear_interp_simd.sv          ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp_simd.sv ;         ;
 ; stage1_interp_x.sv               ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv      ;         ;
 ; stage2_interp_y.sv               ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv      ;         ;
 ; stage3_convert.sv                ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage3_convert.sv       ;         ;
-; bilinear_interp.sv               ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv      ;         ;
-; bilinear_interp_simd.sv          ; yes             ; User SystemVerilog HDL File  ; /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp_simd.sv ;         ;
 +----------------------------------+-----------------+------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -390,26 +390,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Wed Nov 19 20:43:43 2025
+    Info: Processing started: Wed Nov 19 22:28:04 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Interpolacion -c Interpolacion
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file tb_bilinear_interp.sv
     Info (12023): Found entity 1: tb_bilinear_interp File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_bilinear_interp.sv Line: 3
-Info (12021): Found 1 design units, including 1 entities, in source file stage1_interp_x.sv
-    Info (12023): Found entity 1: stage1_interp_x File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 7
-Info (12021): Found 1 design units, including 1 entities, in source file stage2_interp_y.sv
-    Info (12023): Found entity 1: stage2_interp_y File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv Line: 7
-Info (12021): Found 1 design units, including 1 entities, in source file stage3_convert.sv
-    Info (12023): Found entity 1: stage3_convert File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage3_convert.sv Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file tb_simd_integration.sv
+    Info (12023): Found entity 1: tb_simd_integration File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_simd_integration.sv Line: 3
 Info (12021): Found 1 design units, including 1 entities, in source file bilinear_interp.sv
     Info (12023): Found entity 1: bilinear_interp File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 6
 Info (12021): Found 1 design units, including 1 entities, in source file bilinear_interp_simd.sv
     Info (12023): Found entity 1: bilinear_interp_simd File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp_simd.sv Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file simd_registers.sv
     Info (12023): Found entity 1: simd_registers File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/simd_registers.sv Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file tb_simd_integration.sv
-    Info (12023): Found entity 1: tb_simd_integration File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_simd_integration.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file stage1_interp_x.sv
+    Info (12023): Found entity 1: stage1_interp_x File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file stage2_interp_y.sv
+    Info (12023): Found entity 1: stage2_interp_y File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv Line: 7
+Info (12021): Found 1 design units, including 1 entities, in source file stage3_convert.sv
+    Info (12023): Found entity 1: stage3_convert File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage3_convert.sv Line: 7
 Info (12127): Elaborating entity "bilinear_interp_simd" for the top level hierarchy
 Info (12128): Elaborating entity "bilinear_interp" for hierarchy "bilinear_interp:sim_lanes[0].u_core" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp_simd.sv Line: 38
 Info (12128): Elaborating entity "stage1_interp_x" for hierarchy "bilinear_interp:sim_lanes[0].u_core|stage1_interp_x:u_stage1" File: /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv Line: 49
@@ -427,9 +427,9 @@ Info (21057): Implemented 494 device resources after synthesis - the final resou
     Info (21061): Implemented 274 logic cells
     Info (21062): Implemented 24 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 554 megabytes
-    Info: Processing ended: Wed Nov 19 20:43:50 2025
-    Info: Elapsed time: 00:00:07
-    Info: Total CPU time (on all processors): 00:00:14
+    Info: Peak virtual memory: 551 megabytes
+    Info: Processing ended: Wed Nov 19 22:28:13 2025
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:16
 
 

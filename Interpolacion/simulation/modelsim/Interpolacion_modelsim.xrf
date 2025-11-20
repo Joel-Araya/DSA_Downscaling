@@ -1,12 +1,12 @@
 vendor_name = ModelSim
 source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_bilinear_interp.sv
-source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv
-source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv
-source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage3_convert.sv
+source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_simd_integration.sv
 source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp.sv
 source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/bilinear_interp_simd.sv
 source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/simd_registers.sv
-source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/tb_simd_integration.sv
+source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage1_interp_x.sv
+source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage2_interp_y.sv
+source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/stage3_convert.sv
 source_file = 1, /home/jose/Documents/TEC/2025/II Semestre/CE4302 - Arquitectura de Computadores II/Proyectos/Proyecto 2/DSA_Downscaling/Interpolacion/db/Interpolacion.cbx.xml
 design_name = bilinear_interp_simd
 instance = comp, \o_pixel_out_vec[0][0]~output , o_pixel_out_vec[0][0]~output, bilinear_interp_simd, 1

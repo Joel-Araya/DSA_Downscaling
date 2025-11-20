@@ -53,8 +53,8 @@ module tb_simd_integration;
 		// Lane 0 (entre 10 y 20) -> 15
 		// Lane 1 (entre 30 y 40) -> 25
 		
-		row0_in = '{8'd10, 8'd20, 8'd30, 8'd40, 8'd50};
-		row1_in = '{8'd10, 8'd20, 8'd30, 8'd40, 8'd50};
+		row0_in = '{8'd50, 8'd40, 8'd30, 8'd20, 8'd10};
+		row1_in = '{8'd50, 8'd40, 8'd30, 8'd20, 8'd10};
 		
 		i_load_en = 1;
 		@(posedge clk);
