@@ -303,7 +303,7 @@ proc handle_command {line} {
         }
 
         HELP {
-            return "CMDS: SET_PARAMS READ_PARAMS SET_SCALE WRITE_PIXELS START READ_OUTPUT STEP READ_REG READ_REGS WRITE_REG HELP"
+            return "Commands: SET_PARAMS, READ_PARAMS, SET_SCALE, WRITE_PIXELS, START, READ_OUTPUT, STEP, READ_REG, READ_REGS, WRITE_REG"
         }
 
 
@@ -330,11 +330,14 @@ proc handle {sock} {
     }
 
     gets $sock line
-    if {$line ne ""} {
-        set response [handle_command $line]
-        puts $sock $response
-        flush $sock
+    if {$line eq "" } {
+        # Ignorar líneas vacías
+        return
     }
+
+    set response [handle_command $line]
+    puts $sock $response
+    flush $sock
 }
 
 set server [socket -server accept $SERVER_PORT]

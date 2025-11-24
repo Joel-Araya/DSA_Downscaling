@@ -118,7 +118,10 @@ if __name__ == "__main__":
     
     command = input("Comando TCL: ").upper()
     while command.lower() != "exit":
-
+        if command == "":
+            # No enviar nada, seguir esperando
+            command = input("Comando TCL: ").upper()
+            continue
 
         response = t.send(command)
         if response.startswith("DATA "):
