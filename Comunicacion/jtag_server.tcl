@@ -9,7 +9,7 @@ package require base64
 # ----------------------------------------------------------------------
 # CONFIGURACIÓN
 # ----------------------------------------------------------------------
-set USE_FPGA 0        ;# 0 = Mock, 1 = FPGA real
+set USE_FPGA 1        ;# 0 = Mock, 1 = FPGA real
 set SERVER_PORT 9999  ;# Puerto para el cliente Python
 set VJTAG_DATA_WIDTH 8 ;# Ancho de palabra para DR shifts (8,16,32...)
 
@@ -212,7 +212,7 @@ proc handle_command {line} {
                     set byte [scan $c %c]
                     # Convertir byte → binario de N bits
                     set binstr [format "%0*b" $VJTAG_DATA_WIDTH $byte]
-                    fpga_write_word $binstr
+                    # fpga_write_word $binstr
                 }
             }
             return "OK PIXELS WRITED"
