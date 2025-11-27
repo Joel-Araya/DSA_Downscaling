@@ -1,6 +1,8 @@
+# Ignore database and output files
 db/
 incremental_db/
 simulation/
 output_files/
+# Ignore backup and report files
 *.bak
 *.rpt
