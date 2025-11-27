@@ -167,8 +167,8 @@ module main_controller (
 			end
 			
 			TRIGGER_CALC: begin
-				if (!i_mode) o_simd_start = 1'b1;
-				else 			 o_seq_start = 1'b0;
+				if (i_mode) o_simd_start = 1'b1;
+				else 			 o_seq_start = 1'b1;
 			end
 			
 			WRITE_RES: begin
@@ -178,7 +178,7 @@ module main_controller (
 				// Esto requiere ajuste matemático, simplificado aquí:
 				o_mem_addr = OUTPUT_BASE_ADDR + (((y_cnt/2) * (i_width/2)) + (x_cnt/2)) / 4;
 				
-				if (!i_mode) begin
+				if (i_mode) begin
 					// Modo SIMD: Escribe 4 bytes
 					o_mem_byte_en = 4'b1111;
 					o_mem_wdata = i_simd_result;

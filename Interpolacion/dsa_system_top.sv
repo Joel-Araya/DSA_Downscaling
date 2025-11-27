@@ -20,7 +20,7 @@ module dsa_system_top (
 	logic simd_start, simd_valid;
 	logic seq_start, seq_valid;
 	logic [3:0][7:0] simd_r0, simd_r1, simd_res;
-	logic [7:0] seq_p1, seq_p2, seq_p3, se1_p4, seq_res;
+	logic [7:0] seq_p1, seq_p2, seq_p3, seq_p4, seq_res;
 	
 	// Instancia del Controlador (FSM)
 	main_controller u_controller (
