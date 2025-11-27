@@ -3,6 +3,7 @@ db/
 incremental_db/
 simulation/
 output_files/
+.qsys_edit/
 # Ignore backup and report files
 *.bak
 *.rpt
