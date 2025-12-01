@@ -1,16 +1,21 @@
 module dsa_system_top (
-	input logic clk,
-	input logic rst_n,
+	input logic  clk,
+	input logic  rst_n,
 	// Interfaz de Control (JTAG)
-	input logic i_start,
-	input logic i_mode_select, // 0 = SEQ, 1 = SIMD
+	input logic  i_start,
+	input logic  i_mode_select, // 0 = SEQ, 1 = SIMD
 	output logic o_busy,
 	output logic o_done,
-	input logic [8:0] i_img_width,
-	input logic [8:0] i_img_height,
+	// Stepping
+	input logic i_step_mode,
+	input logic i_step_trig,
+	// Configuracion de imagen
+	input logic [8:0]  i_img_width,
+	input logic [8:0]  i_img_height,
+	input logic [15:0] i_inv_scale, // Paso de avance
 	// Interfaz de Memoria (Para conectar a la BRAM Dual-Port)
 	output logic [15:0] o_mem_addr,
-	output logic o_mem_we,
+	output logic 		  o_mem_we,
 	output logic [3:0]  o_mem_byte_en, // Importante para escritura parcial
 	output logic [31:0] o_mem_wdata,
 	input logic  [31:0] i_mem_rdata
@@ -19,6 +24,10 @@ module dsa_system_top (
 	// Cables internos
 	logic simd_start, simd_valid;
 	logic seq_start, seq_valid;
+	
+	// Pesos Calculados por el Controlador
+	logic [15:0] w_wx, w_wy;
+	
 	logic [3:0][7:0] simd_r0, simd_r1, simd_res;
 	logic [7:0] seq_p1, seq_p2, seq_p3, seq_p4, seq_res;
 	
@@ -26,17 +35,27 @@ module dsa_system_top (
 	main_controller u_controller (
 		.clk(clk), 
 		.rst_n(rst_n),
+		// Control Global
 		.i_start(i_start), 
 		.i_mode(i_mode_select),
 		.o_busy(o_busy), 
 		.o_done(o_done),
+		// Stepping
+		.i_step_mode(i_step_mode),
+		.i_step_trig(i_step_trig),
+		// Imagen
 		.i_width(i_img_width), 
 		.i_height(i_img_height),
+		.i_inv_scale(i_inv_scale),
+		// Memoria
 		.o_mem_addr(o_mem_addr), 
 		.o_mem_we(o_mem_we),
 		.o_mem_byte_en(o_mem_byte_en),
 		.o_mem_wdata(o_mem_wdata), 
 		.i_mem_rdata(i_mem_rdata),
+		// Pesos
+		.o_wx(w_wx),
+		.o_wy(w_wy),
 		// SIMD
 		.o_simd_start(simd_start),
 		.o_row0_vec(simd_r0), 
@@ -64,8 +83,8 @@ module dsa_system_top (
 		.i_p2_vec(simd_r0), 
 		.i_p3_vec(simd_r1), 
 		.i_p4_vec(simd_r1),
-		.i_wx(16'h0080), // 0.5 fijo
-		.i_wy(16'h0080), // 0.5 fijo
+		.i_wx(w_wx),
+		.i_wy(w_wy),
 		.o_pixel_out_vec(simd_res),
 		.o_valid(simd_valid)
 	);
@@ -78,8 +97,8 @@ module dsa_system_top (
 		.i_p2(seq_p2), 
 		.i_p3(seq_p3), 
 		.i_p4(seq_p4),
-		.i_wx(16'h0080), 
-		.i_wy(16'h0080),
+		.i_wx(w_wx),
+		.i_wy(w_wy),
 		.o_pixel_out(seq_res),
 		.o_valid(seq_valid)
 	);
