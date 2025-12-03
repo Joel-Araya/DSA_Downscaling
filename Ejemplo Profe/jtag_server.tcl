@@ -4,7 +4,7 @@
 ##############################################################################################
 
 # --- START: Parameter for Data Width from Command Line ---
-set VJTAG_DATA_WIDTH 16 ; # Default value
+set VJTAG_DATA_WIDTH 32 ; # Default value
 if {$argc > 0} {
     set arg1 [lindex $argv 0]
     if {[string is integer -strict $arg1] && $arg1 > 0} {
