@@ -13,7 +13,7 @@ VERBOSE_LEVEL_DEBUG = 2  # All messages including DEBUG
 # --- END: Verbosity Levels ---
 
 # These will be set in main() after parsing arguments
-DATA_WIDTH = 8
+DATA_WIDTH = 16
 MAX_VAL = (1 << DATA_WIDTH) - 1
 HEX_PADDING = DATA_WIDTH // 4
 VERBOSITY_LEVEL = VERBOSE_LEVEL_NORMAL # Default, will be updated by argparse
@@ -246,9 +246,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "-dw", "--data_width", 
         type=int, 
-        default=8, 
+        default=16, 
         choices=[8, 16, 32, 64],
-        help="Specify the data width in bits for JTAG operations (default: 8)."
+        help="Specify the data width in bits for JTAG operations (default: 16)."
     )
     # Add verbosity arguments
     parser.add_argument(
