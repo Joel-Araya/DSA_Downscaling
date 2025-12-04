@@ -28,64 +28,63 @@ module dsa_system_top (
 	// Pesos Calculados por el Controlador
 	logic [15:0] w_wx, w_wy;
 	
-	logic [3:0][7:0] simd_r0, simd_r1, simd_res;
+	// Cables para el Módulo SIMD_register
+   logic [3:0][7:0] w_ctrl_data_r0;
+   logic [3:0][7:0] w_ctrl_data_r1;
+	logic [3:0][7:0] w_p1_vec, w_p2_vec, w_p3_vec, w_p4_vec;
+	
+	// Resultados y datos secuenciales
+	logic [31:0] simd_res;
 	logic [7:0] seq_p1, seq_p2, seq_p3, seq_p4, seq_res;
 	
 	// Instancia del Controlador (FSM)
 	main_controller u_controller (
-		.clk(clk), 
-		.rst_n(rst_n),
+		.clk(clk), .rst_n(rst_n),
 		// Control Global
-		.i_start(i_start), 
-		.i_mode(i_mode_select),
-		.o_busy(o_busy), 
-		.o_done(o_done),
+		.i_start(i_start), .i_mode(i_mode_select),
+		.o_busy(o_busy), .o_done(o_done),
 		// Stepping
-		.i_step_mode(i_step_mode),
-		.i_step_trig(i_step_trig),
+		.i_step_mode(i_step_mode), .i_step_trig(i_step_trig),
 		// Imagen
-		.i_width(i_img_width), 
-		.i_height(i_img_height),
+		.i_width(i_img_width), .i_height(i_img_height),
 		.i_inv_scale(i_inv_scale),
 		// Memoria
-		.o_mem_addr(o_mem_addr), 
-		.o_mem_we(o_mem_we),
+		.o_mem_addr(o_mem_addr), .o_mem_we(o_mem_we),
 		.o_mem_byte_en(o_mem_byte_en),
-		.o_mem_wdata(o_mem_wdata), 
-		.i_mem_rdata(i_mem_rdata),
+		.o_mem_wdata(o_mem_wdata), .i_mem_rdata(i_mem_rdata),
 		// Pesos
-		.o_wx(w_wx),
-		.o_wy(w_wy),
+		.o_wx(w_wx), .o_wy(w_wy),
 		// SIMD
 		.o_simd_start(simd_start),
-		.o_row0_vec(simd_r0), 
-		.o_row1_vec(simd_r1),
-		.i_simd_result(simd_res), 
-		.i_simd_valid(simd_valid),
+		.o_row0_vec(w_ctrl_data_r0), .o_row1_vec(w_ctrl_data_r1),
+		.i_simd_result(simd_res), .i_simd_valid(simd_valid),
 		// Sequential
 		.o_seq_start(seq_start),
-		.o_seq_p1(seq_p1), 
-		.o_seq_p2(seq_p2), 
-		.o_seq_p3(seq_p3), 
-		.o_seq_p4(seq_p4),
-		.i_seq_result(seq_res), 
-		.i_seq_valid(seq_valid)
-);
+		.o_seq_p1(seq_p1), .o_seq_p2(seq_p2), 
+		.o_seq_p3(seq_p3), .o_seq_p4(seq_p4),
+		.i_seq_result(seq_res), .i_seq_valid(seq_valid)
+	);
+	
+	// Instancia del Registro SIMD
+	simd_registers u_simd_reg (
+		.clk(clk), .rst_n(rst_n),
+		// Entrada desde el Controlador
+		.i_row0_data(w_ctrl_r0), .i_row1_data(w_ctrl_r1),
+		// Salida hacia el Nucleo SIMD
+		.o_p1_vec(w_p1_vec), .o_p2_vec(w_p2_vec),
+		.o_p3_vec(w_p3_vec), .o_p4_vec(w_p4_vec)
+    );
 	
 	// Instancia SIMD Core
 	// Nota: i_wx e i_wy estan hardcodeados a o.5 (0x0080) por ahora,
 	// o deben venir de registros de configuracion.
 	bilinear_interp_simd u_simd_core (
-		.clk(clk), 
-		.rst_n(rst_n),
+		.clk(clk), .rst_n(rst_n),
 		.i_start(simd_start),
-		.i_p1_vec(simd_r0), 
-		.i_p2_vec(simd_r0), 
-		.i_p3_vec(simd_r1), 
-		.i_p4_vec(simd_r1),
-		.i_wx(w_wx),
-		.i_wy(w_wy),
-		.o_pixel_out_vec(simd_res),
+		.i_p1_vec(w_reg_r0), .i_p2_vec(w_reg_r0), 
+		.i_p3_vec(w_reg_r1), .i_p4_vec(w_reg_r1),
+		.i_wx(w_wx), .i_wy(w_wy),
+		.o_pixel_out_vec(simd_res), 
 		.o_valid(simd_valid)
 	);
 	
@@ -93,12 +92,9 @@ module dsa_system_top (
 	bilinear_interp u_seq_core (
 		.clk(clk), .rst_n(rst_n),
 		.i_start(seq_start),
-		.i_p1(seq_p1), 
-		.i_p2(seq_p2), 
-		.i_p3(seq_p3), 
-		.i_p4(seq_p4),
-		.i_wx(w_wx),
-		.i_wy(w_wy),
+		.i_p1(seq_p1), .i_p2(seq_p2), 
+		.i_p3(seq_p3), .i_p4(seq_p4),
+		.i_wx(w_wx), .i_wy(w_wy),
 		.o_pixel_out(seq_res),
 		.o_valid(seq_valid)
 	);
