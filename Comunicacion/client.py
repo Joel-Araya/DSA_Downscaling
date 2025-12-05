@@ -239,7 +239,14 @@ class TCLClient:
 
     def help(self):
         print(""" Comandos disponibles:
-        En desarrollo...
+        START                                                           - Inicia el procesamiento de la imagen.
+        STEP                                                            - Procesa un paso de la imagen (modo debug).
+        IMAGE_CONFIG <width> <height> <scale> <mode> <debug> <N_SIMD>   - Configura los parámetros de la imagen.
+        WRITE_PIXELS                                                    - Envía los datos de la imagen cargada.
+        READ_REG <reg_name/reg_address>                                 - Lee el valor de un registro específico.
+        READ_IMAGE                                                      - Lee la imagen procesada y la guarda como PNG.
+        EXIT                                                            - Salir del programa.
+        HELP                                                            - Muestra esta ayuda.
         """
         )
 
