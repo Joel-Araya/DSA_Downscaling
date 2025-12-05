@@ -50,6 +50,10 @@ module tb_dsa_system;
 		.o_mem_byte_en(mem_byte_en),
 		.o_mem_wdata(mem_wdata), .i_mem_rdata(mem_rdata)
 	);
+	
+	initial begin
+		clk = 0;
+	end
 
 	// --- Generación de Reloj ---
 	always #(CLK_PERIOD/2) clk = ~clk;
@@ -84,10 +88,10 @@ module tb_dsa_system;
 		for (i = 0; i < IMG_H; i++) begin
 			for (j = 0; j < IMG_W; j=j+4) begin
 				// Patrón: Valor = (y * 8) + x. Ej: Fila 0 = 0, 1, 2, 3...
-				pixel_pack =  {8'(i*IMG_W + j+3), 
-									8'(i*IMG_W + j+2), 
-									8'(i*IMG_W + j+1), 
-									8'(i*IMG_W + j)};
+				pixel_pack =  {8'(i*IMG_W + j+3+32), 
+									8'(i*IMG_W + j+2+32), 
+									8'(i*IMG_W + j+1+32), 
+									8'(i*IMG_W + j+32)}; 
 				fake_ram[ADDR_INPUT + (i*IMG_W + j)/4] = pixel_pack;
 			end
 		end
@@ -103,28 +107,29 @@ module tb_dsa_system;
 	endtask
 
 	// --- Proceso Principal de Prueba ---
-	initial begin
+initial begin
 		// Valores por defecto
-		clk = 0; rst_n = 0; i_start = 0; 
+		clk = 0; rst_n = 0; i_start = 0;
 		i_mode = 0; i_step_mode = 0; i_step_trig = 0;
 		i_w = IMG_W; i_h = IMG_H;
 
-		// ** Escala 0.5 (Avance 2.0) **
-		// 2.0 en Q8.8 es 2 * 2^8 = 512 = 16'h0200
-		i_inv_scale = 16'h0200; 
+		// ** CORRECCIÓN CRÍTICA DE ESCALA **
+		// Escala 0.75 (Avance 1.333...)
+		// 1/0.75 ≈ 1.3333. En Q8.8 (x 2^8) es 341.33, redondeado a 16'h0155.
+		i_inv_scale = 16'h0155; // Fuerza un peso fraccionario w_x = 0.33
 
-		init_memory();
+		init_memory(); // Volvemos al patrón 0, 1, 2, 3...
 
 		// Reset Inicial
 		#20 rst_n = 1;
 		#20;
-		rst_n = 0; #10 rst_n = 1; 
+		rst_n = 0; #10 rst_n = 1;
 
 		// ------------------------------------------------
-		// PRUEBA 1: MODO SIMD (Escala 0.5 - Corrida completa)
+		// PRUEBA 1: MODO SIMD (Escala 0.75 - Corrida completa)
 		// ------------------------------------------------
-		$display("\n>>> PRUEBA 1: INICIANDO MODO SIMD (Escala 0.5) <<<");
-		i_mode = 1; i_step_mode = 0; // Deshabilitar stepping
+		$display("\n>>> PRUEBA 1: INICIANDO MODO SIMD (Escala 0.75) <<<");
+		i_mode = 1; i_step_mode = 0; 
 		i_start = 1;
 		@(posedge clk);
 		i_start = 0;
@@ -136,12 +141,12 @@ module tb_dsa_system;
 		// ------------------------------------------------
 		// PRUEBA 2: MODO SECUENCIAL con STEPPING (Validar RF-09)
 		// ------------------------------------------------
-		$display("\n>>> PRUEBA 2: INICIANDO MODO SECUENCIAL con STEPPING <<<");
+		$display("\n>>> PRUEBA 2: INICIANDO MODO SECUENCIAL con STEPPING (Escala 0.75) <<<");
 
 		// Reiniciar contadores para la nueva prueba
 		rst_n = 0; #10 rst_n = 1; 
 
-		i_mode = 0;          // Modo Secuencial
+		i_mode = 0;
 		i_step_mode = 1;     // HABILITAR Stepping
 
 		i_start = 1;
@@ -149,27 +154,22 @@ module tb_dsa_system;
 		i_start = 0;
 
 		// Esperar 500ns para confirmar que el sistema se PAUSA
-		$display("[TEST] Esperando 500ns. El sistema DEBE pausarse despues del 1er pixel.");
+		$display("[TEST] Esperando 500ns. El sistema DEBE pausarse después del CALC_ADDR inicial.");
 		#500; 
 
-		// El controlador ya está en PAUSED. Hacemos 4 pasos (4 píxeles de salida).
-
-		// 1er click: Procesa el 1er pixel de salida
+		// El controlador ya está en PAUSED. Hacemos 4 pasos.
 		$display("\n[TEST] Enviando Trigger 1 (Paso 1/4):");
 		click_step();
 		#50;
 
-		// 2do click: Procesa el 2do pixel de salida
-		$display("\n[TEST] Enviando Trigger 2 (Paso 2/4):");
+		$display("\n[TEST] Enviando Trigger 2 (Paso 2/4):"); 
 		click_step();
 		#50;
 
-		// 3er click: Procesa el 3er pixel de salida
 		$display("\n[TEST] Enviando Trigger 3 (Paso 3/4):");
 		click_step();
 		#50;
 
-		// 4to click: Procesa el 4to pixel de salida
 		$display("\n[TEST] Enviando Trigger 4 (Paso 4/4):");
 		click_step();
 		#50;

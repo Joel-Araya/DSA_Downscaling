@@ -65,6 +65,9 @@ module instruction_handler_memory_tb;
         .o_mem_wdata  (o_mem_wdata),
         .i_mem_rdata  (i_mem_rdata)
     );
+	 initial begin
+		clk = 0; 
+	 end
     
     // Clock generation (50MHz)
     always #(CLK_PERIOD/2) clk = ~clk;
